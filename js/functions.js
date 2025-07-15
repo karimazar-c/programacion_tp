@@ -1,5 +1,6 @@
 let vidaJugador = 10;
 let vidaComputadora = 10;
+let defensaGeneral = 0; //para lógica de defensa
 let cartasJugador = [];
 let cartasComputadora = [];
 let cartasSeleccionadas = null;
@@ -94,49 +95,49 @@ function Personaje(x,y,ancho,alto,imagen){
     }
 }
 const mazoOriginalJugador = [
-    { name: "ATQ 1", tipo: "ataque", valor: 3 },
-    { name: "ATQ 2", tipo: "ataque", valor: 2 },
-    { name: "ATQ 3", tipo: "ataque", valor: 4 },
-    { name: "ATQ 4", tipo: "ataque", valor: 3 },
-    { name: "ATQ 5", tipo: "ataque", valor: 5 },
-    { name: "ATQ 6", tipo: "ataque", valor: 2 },
-    { name: "ATQ 7", tipo: "ataque", valor: 6 },
-    { name: "ATQ 8", tipo: "ataque", valor: 4 },
-    { name: "ATQ 9", tipo: "ataque", valor: 3 },
-    { name: "ATQ 10", tipo: "ataque", valor: 5 },
-    { name: "DEF 1", tipo: "defensa", valor: 3 },
-    { name: "DEF 2", tipo: "defensa", valor: 4 },
-    { name: "DEF 3", tipo: "defensa", valor: 2 },
-    { name: "DEF 4", tipo: "defensa", valor: 5 },
-    { name: "Curación", tipo: "defensa", valor: 3 },
-    { name: "DEF 5", tipo: "defensa", valor: 4 },
-    { name: "DEF 6", tipo: "defensa", valor: 6 },
-    { name: "DEF 7", tipo: "defensa", valor: 2 },
-    { name: "DEF 8", tipo: "defensa", valor: 3 },
-    { name: "DEF 9", tipo: "defensa", valor: 5 }
+    { name: "Puñetazo (3)", tipo: "ataque", valor: 3 },
+    { name: "Bofetada (2)", tipo: "ataque", valor: 2 },
+    { name: "Arañazo (4)", tipo: "ataque", valor: 4 },
+    { name: "Puñetazo (3)", tipo: "ataque", valor: 3 },
+    { name: "Patada (5)", tipo: "ataque", valor: 5 },
+    { name: "Bofetada (2)", tipo: "ataque", valor: 2 },
+    { name: "Hechizo (6)", tipo: "ataque", valor: 6 },
+    { name: "Arañazo (4)", tipo: "ataque", valor: 4 },
+    { name: "Puñetazo (3)", tipo: "ataque", valor: 3 },
+    { name: "Patada (5)", tipo: "ataque", valor: 5 },
+    { name: "DEF (3)", tipo: "defensa", valor: 3 },
+    { name: "DEF (4)", tipo: "defensa", valor: 4 },
+    { name: "DEF (2)", tipo: "defensa", valor: 2 },
+    { name: "DEF (5)", tipo: "defensa", valor: 5 },
+    { name: "DEF (3)", tipo: "defensa", valor: 3 },
+    { name: "DEF (4)", tipo: "defensa", valor: 4 },
+    { name: "DEF (4)", tipo: "defensa", valor: 4 },
+    { name: "DEF (2)", tipo: "defensa", valor: 2 },
+    { name: "DEF (3)", tipo: "defensa", valor: 3 },
+    { name: "DEF (5)", tipo: "defensa", valor: 5 }
 ];
 
 const mazoOriginalComputadora = [ 
-    { name: "ATQ 1", tipo: "ataque", valor: 3 },
-    { name: "ATQ 2", tipo: "ataque", valor: 2 },
-    { name: "ATQ 3", tipo: "ataque", valor: 4 },
-    { name: "ATQ 4", tipo: "ataque", valor: 3 },
-    { name: "ATQ 5", tipo: "ataque", valor: 5 },
-    { name: "ATQ 6", tipo: "ataque", valor: 2 },
-    { name: "ATQ 7", tipo: "ataque", valor: 6 },
-    { name: "ATQ 8", tipo: "ataque", valor: 4 },
-    { name: "ATQ 9", tipo: "ataque", valor: 3 },
-    { name: "ATQ 10", tipo: "ataque", valor: 5 },
-    { name: "DEF 1", tipo: "defensa", valor: 3 },
-    { name: "DEF 2", tipo: "defensa", valor: 4 },
-    { name: "DEF 3", tipo: "defensa", valor: 2 },
-    { name: "DEF 4", tipo: "defensa", valor: 5 },
-    { name: "Curación", tipo: "defensa", valor: 3 },
-    { name: "DEF 5", tipo: "defensa", valor: 4 },
-    { name: "DEF 6", tipo: "defensa", valor: 6 },
-    { name: "DEF 7", tipo: "defensa", valor: 2 },
-    { name: "DEF 8", tipo: "defensa", valor: 3 },
-    { name: "DEF 9", tipo: "defensa", valor: 5 }];
+    { name: "Embestida (3)", tipo: "ataque", valor: 3 },
+    { name: "Palmeo (2)", tipo: "ataque", valor: 2 },
+    { name: "Arañazo (4)", tipo: "ataque", valor: 4 },
+    { name: "Embestida (3)", tipo: "ataque", valor: 3 },
+    { name: "Mordisco (5)", tipo: "ataque", valor: 5 },
+    { name: "Palmeo (2)", tipo: "ataque", valor: 2 },
+    { name: "Especial (5)", tipo: "ataque", valor: 5 },
+    { name: "Arañazo (4)", tipo: "ataque", valor: 4 },
+    { name: "Embestida (3)", tipo: "ataque", valor: 3 },
+    { name: "Patada (5)", tipo: "ataque", valor: 5 },
+    { name: "DEF (3)", tipo: "defensa", valor: 3 },
+    { name: "DEF (4)", tipo: "defensa", valor: 4 },
+    { name: "DEF (2)", tipo: "defensa", valor: 2 },
+    { name: "DEF (4)", tipo: "defensa", valor: 4 },
+    { name: "DEF (3)", tipo: "defensa", valor: 3 },
+    { name: "DEF (3)", tipo: "defensa", valor: 3 },
+    { name: "DEF (3)", tipo: "defensa", valor: 3 },
+    { name: "DEF (2)", tipo: "defensa", valor: 2 },
+    { name: "DEF (3)", tipo: "defensa", valor: 3 },
+    { name: "DEF (4)", tipo: "defensa", valor: 4 }];
 
 const ENEMIGOS_DISPONIBLES = [
     {
@@ -270,7 +271,7 @@ let enemigoActual = null;
                 cartaEl.classList.add('seleccionada', 'animada');
                 setTimeout(() => {
                     cartaEl.classList.remove('animada');
-                }, 300); // mismo tiempo que la animación CSS
+                }, 300); 
             }
             cartaEl.innerHTML = `
                 <div class="nombre-carta">${carta.name}</div>
@@ -279,8 +280,16 @@ let enemigoActual = null;
                 </div>
             `;
             cartaEl.addEventListener('click', () => selectCard(index));
-            cartasJugadorEl.appendChild(cartaEl);  
+
+              cartaEl.addEventListener('mouseenter', () => {
+            if (!cartaEl.classList.contains('seleccionada')) {
+                audioHovercarta.currentTime = 0; 
+                audioHovercarta.play();
+            } //esto para el hover
+            
         });
+                cartasJugadorEl.appendChild(cartaEl);  
+    });
 
         cartasRivalEl.innerHTML = '';
 
@@ -297,13 +306,21 @@ let enemigoActual = null;
         });
 
         // Lógica de fin de juego por vida
-        if (vidaJugador <= 0 || vidaComputadora <= 0) {
+                if (vidaJugador <= 0 || vidaComputadora <= 0) {
             gameOver = true;
 
             if (vidaJugador <= 0 && vidaComputadora <= 0) {
-                mensajeEl.textContent = "Empate";
-            } else if (vidaComputadora <= 0) {
+                    mensajeEl.textContent = "Empate";
+        } else if (vidaComputadora <= 0) {
                 mensajeEl.textContent = "Victoria";
+    
+    audioMuertepc.currentTime = 0; //agregué audio muertepc para cuando ganamos y puse un timeout de 2s para no solapar audio
+    audioMuertepc.play();
+    
+    setTimeout(() => {
+        audioWin.currentTime = 0;
+        audioWin.play();
+    }, 2000);
                  const derrotados = JSON.parse(localStorage.getItem("enemigosDerrotados") || "[]");
                 if (!derrotados.includes(enemigoActual.id)) {
                     derrotados.push(enemigoActual.id);
@@ -311,6 +328,7 @@ let enemigoActual = null;
                 }
             } else {
                 mensajeEl.textContent = "Derrota";
+                audioMuertejugador.play();
             }
 
             botonReiniciar.style.display = 'inline-block';
@@ -353,10 +371,11 @@ function playCard() {
     if (cartaJugador.tipo === "ataque") {
         vidaComputadora -= cartaJugador.valor;
         mensajeEl.textContent = `${cartaJugador.name} hizo ${cartaJugador.valor} de daño a la computadora.`;
+        audioAtaque.play();
     } else if (cartaJugador.tipo === "defensa") 
         vidaJugador += cartaJugador.valor;
         mensajeEl.textContent = `${cartaJugador.name} te curó ${cartaJugador.valor} de vida.`;
-    
+        audioDefensa.play();
 
     vidaJugador = Math.max(0, vidaJugador);
     vidaComputadora = Math.max(0, vidaComputadora);
